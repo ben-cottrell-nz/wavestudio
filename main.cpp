@@ -53,7 +53,8 @@ void ShowAppMainMenuBar() {
 
 struct Track {
     std::string name;
-    double gain = 0.5;
+    float gain = 0.5;
+    float pan = 0;
 };
 
 struct Project {
@@ -64,6 +65,7 @@ struct Project {
 struct AppState {
     bool intro_window_visible = true;
     Project project;
+    double initial_track_width_scale;
 } g_app_state;
 
 void SetFont() {
@@ -83,19 +85,67 @@ void SetFont() {
 
 }
 
-void ShowTrack(const char *name) {
-    ImGui::Text("%s", name);
+void SetColors()
+{
+    //https://github.com/ocornut/imgui/issues/707#issuecomment-512669512
+    ImGui::GetStyle().FrameRounding = 4.0f;
+    ImGui::GetStyle().GrabRounding = 4.0f;
+
+    ImVec4* colors = ImGui::GetStyle().Colors;
+    colors[ImGuiCol_Text] = ImVec4(0.95f, 0.96f, 0.98f, 1.00f);
+    colors[ImGuiCol_TextDisabled] = ImVec4(0.36f, 0.42f, 0.47f, 1.00f);
+    colors[ImGuiCol_WindowBg] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
+    colors[ImGuiCol_ChildBg] = ImVec4(0.15f, 0.18f, 0.22f, 1.00f);
+    colors[ImGuiCol_PopupBg] = ImVec4(0.08f, 0.08f, 0.08f, 0.94f);
+    colors[ImGuiCol_Border] = ImVec4(0.08f, 0.10f, 0.12f, 1.00f);
+    colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_FrameBg] = ImVec4(0.20f, 0.25f, 0.29f, 1.00f);
+    colors[ImGuiCol_FrameBgHovered] = ImVec4(0.12f, 0.20f, 0.28f, 1.00f);
+    colors[ImGuiCol_FrameBgActive] = ImVec4(0.09f, 0.12f, 0.14f, 1.00f);
+    colors[ImGuiCol_TitleBg] = ImVec4(0.09f, 0.12f, 0.14f, 0.65f);
+    colors[ImGuiCol_TitleBgActive] = ImVec4(0.08f, 0.10f, 0.12f, 1.00f);
+    colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.00f, 0.00f, 0.00f, 0.51f);
+    colors[ImGuiCol_MenuBarBg] = ImVec4(0.15f, 0.18f, 0.22f, 1.00f);
+    colors[ImGuiCol_ScrollbarBg] = ImVec4(0.02f, 0.02f, 0.02f, 0.39f);
+    colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.20f, 0.25f, 0.29f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.18f, 0.22f, 0.25f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.09f, 0.21f, 0.31f, 1.00f);
+    colors[ImGuiCol_CheckMark] = ImVec4(0.28f, 0.56f, 1.00f, 1.00f);
+    colors[ImGuiCol_SliderGrab] = ImVec4(0.28f, 0.56f, 1.00f, 1.00f);
+    colors[ImGuiCol_SliderGrabActive] = ImVec4(0.37f, 0.61f, 1.00f, 1.00f);
+    colors[ImGuiCol_Button] = ImVec4(0.20f, 0.25f, 0.29f, 1.00f);
+    colors[ImGuiCol_ButtonHovered] = ImVec4(0.28f, 0.56f, 1.00f, 1.00f);
+    colors[ImGuiCol_ButtonActive] = ImVec4(0.06f, 0.53f, 0.98f, 1.00f);
+    colors[ImGuiCol_Header] = ImVec4(0.20f, 0.25f, 0.29f, 0.55f);
+    colors[ImGuiCol_HeaderHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
+    colors[ImGuiCol_HeaderActive] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_Separator] = ImVec4(0.20f, 0.25f, 0.29f, 1.00f);
+    colors[ImGuiCol_SeparatorHovered] = ImVec4(0.10f, 0.40f, 0.75f, 0.78f);
+    colors[ImGuiCol_SeparatorActive] = ImVec4(0.10f, 0.40f, 0.75f, 1.00f);
+    colors[ImGuiCol_ResizeGrip] = ImVec4(0.26f, 0.59f, 0.98f, 0.25f);
+    colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+    colors[ImGuiCol_ResizeGripActive] = ImVec4(0.26f, 0.59f, 0.98f, 0.95f);
+    colors[ImGuiCol_Tab] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
+    colors[ImGuiCol_TabHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
+    colors[ImGuiCol_TabActive] = ImVec4(0.20f, 0.25f, 0.29f, 1.00f);
+    colors[ImGuiCol_TabUnfocused] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
+    colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
+    colors[ImGuiCol_PlotLines] = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
+    colors[ImGuiCol_PlotLinesHovered] = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
+    colors[ImGuiCol_PlotHistogram] = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+    colors[ImGuiCol_PlotHistogramHovered] = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
+    colors[ImGuiCol_TextSelectedBg] = ImVec4(0.26f, 0.59f, 0.98f, 0.35f);
+    colors[ImGuiCol_DragDropTarget] = ImVec4(1.00f, 1.00f, 0.00f, 0.90f);
+    colors[ImGuiCol_NavHighlight] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
+    colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
+    colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
+}
+
+void ShowTrackContent(const Track& track) {
+    //ImGui::Text("%s", track.name.c_str());
     static float val = 1.f;
     const ImGuiViewport *viewport = ImGui::GetMainViewport();
-    ImGui::SetNextItemWidth(256);
-    ImGui::BeginGroup();
-    ImGui::SliderFloat("Gain", &val, 0.f, 1.f);
-    ImGui::Button("Mute");
-    ImGui::SameLine();
-    ImGui::Button("Solo");
-    ImGui::SameLine();
-    ImGui::EndGroup();
-    ImGui::SameLine();
     static float arr[] = {0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f};
     ImGui::PlotLines("", arr,
                      IM_ARRAYSIZE(arr),
@@ -103,40 +153,73 @@ void ShowTrack(const char *name) {
                      ImVec2(viewport->WorkSize.x - 256, 80));
 }
 
+void DrawTracks()
+{
+    for (auto &track : g_app_state.project.tracks) {
+        ImGui::BeginGroup();
+        ImGui::Text("%s", track.name.c_str());
+        ImGui::Text("-");
+        ImGui::SameLine();
+        ImGui::SetNextItemWidth(70);
+        ImGui::SliderFloat("", &track.gain, 0.f, 1.f, "%.3f", 0);
+        ImGui::SameLine();
+        ImGui::Text("+");
+        ImGui::Text("L");
+        ImGui::SameLine();
+        ImGui::SetNextItemWidth(70);
+        ImGui::SliderFloat("", &track.pan, -1.f, 1.f, "%.3f", 0);
+        ImGui::SameLine();
+        ImGui::Text("R");
+        ImGui::Button("Mute");
+        ImGui::SameLine();
+        ImGui::Button("Solo");
+        ImGui::EndGroup();
+        ImGui::SameLine();
+        ShowTrackContent(track);
+    }
+}
+
 void ShowMainWindow() {
     ImGui::Begin("Project", nullptr,
-                 ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+                 ImGuiWindowFlags_NoResize |
+                 ImGuiWindowFlags_NoCollapse |
+                 ImGuiWindowFlags_MenuBar);
     //        ShowAppMainMenuBar();
-    std::stringstream ss;
-    for (int i=0; i < 15; i++) {
-//        ss.clear();
-        ss.str(std::string());
-        ss << "track" << i;
-        ShowTrack(ss.str().c_str());
+    if (ImGui::BeginMenuBar())
+    {
+        if (ImGui::BeginMenu("File")) {
+            if (ImGui::MenuItem("New Project")) {}
+            if (ImGui::MenuItem("Open Project")) {}
+            ImGui::EndMenu();
+        }
     }
-
+    ImGui::EndMenuBar();
+    DrawTracks();
     ImGui::End();
+}
+
+void NewProject() {
+    g_app_state.project = Project{};
+    Project &project = g_app_state.project;
+    project.name = "Untitled";
+    project.tracks = {Track{"track1", 0.5}};
+
 }
 
 void ShowStartupWindow() {
     ImGui::Begin("Intro Screen", &g_app_state.intro_window_visible,
                  ImGuiWindowFlags_NoResize);
-
     if (ImGui::Button("New Project")) {
         std::cout << __PRETTY_FUNCTION__ << ':' << __LINE__ << '\n';
+        NewProject();
+        ImGuiViewport* viewport = ImGui::GetMainViewport();
+        //default is 30s scale
+        g_app_state.initial_track_width_scale = viewport->WorkSize.x / 30;
         g_app_state.intro_window_visible = false;
     }
     ImGui::Button("Open Project");
     ImGui::Button("Open File");
     ImGui::End();
-}
-
-void NewProject()
-{
-    g_app_state.project = Project {};
-    Project& project = g_app_state.project;
-    project.name = "Untitled";
-    project.tracks = { Track { "track1",0.5 } };
 }
 
 // Main code
@@ -214,7 +297,8 @@ int main(int, char **) {
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     SetFont();
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
+    SetColors();
+//    ImGui::StyleColorsDark();
     //ImGui::StyleColorsClassic();
 
     // Setup Platform/Renderer backends
