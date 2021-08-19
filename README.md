@@ -1,4 +1,4 @@
-##wavestudio
+## wavestudio
 A sound editor that's lightweight and performant.
 
 ### More Info
