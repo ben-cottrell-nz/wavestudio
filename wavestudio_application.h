@@ -9,30 +9,17 @@
 #include <sstream>
 #include <vector>
 #include <filesystem>
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_opengl3.h"
+#include "ImGuiFileBrowser.h"
+#include <SDL.h>
 
 class WaveStudioApplication {
 public:
     int run();
 
 private:
-    void showAppMainMenuBar();
-
-    void setFont();
-
-    void setColors();
-
-    void showTrackContent();
-
-    void drawTracks();
-
-    void showOpenFileDialog(std::string &, const char *, const char *);
-
-    void showMainWindow();
-
-    void showStartupWindow();
-
-    void newProject();
-
     struct Track {
         std::string name;
         float gain = 0.5;
@@ -44,6 +31,23 @@ private:
         std::string name;
         std::vector<Track> tracks;
     };
+    void showAppMainMenuBar();
+
+    void setFont();
+
+    void setColors();
+
+    void showTrackContent(const Track& track);
+
+    void drawTracks();
+
+    void showOpenFileDialog(std::string &, const char *, const char *);
+
+    void showMainWindow();
+
+    void showStartupWindow();
+
+    void newProject();
 
     struct AppState {
         bool intro_window_visible = true;

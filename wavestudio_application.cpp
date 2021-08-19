@@ -1,12 +1,7 @@
 //
 // Created by ben on 19/08/21.
 //
-#include "imgui.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl3.h"
-#include "ImGuiFileBrowser.h"
 
-#include <SDL.h>
 #include "wavestudio_application.h"
 
 #if defined(IMGUI_IMPL_OPENGL_ES2)
@@ -266,7 +261,7 @@ void WaveStudioApplication::setFont() {
 
 }
 
-void WaveStudioApplication::showTrackContent() {
+void WaveStudioApplication::showTrackContent(const Track& track) {
     //ImGui::Text("%s", track.name.c_str());
     static float val = 1.f;
     const ImGuiViewport *viewport = ImGui::GetMainViewport();
@@ -298,7 +293,7 @@ void WaveStudioApplication::drawTracks() {
         ImGui::Button("Solo");
         ImGui::EndGroup();
         ImGui::SameLine();
-        ShowTrackContent(track);
+        showTrackContent(track);
     }
 }
 
@@ -362,7 +357,7 @@ void WaveStudioApplication::showStartupWindow() {
                  ImGuiWindowFlags_NoResize);
     if (ImGui::Button("New Project")) {
         std::cout << __PRETTY_FUNCTION__ << ':' << __LINE__ << '\n';
-        NewProject();
+        newProject();
         ImGuiViewport *viewport = ImGui::GetMainViewport();
         //default is 30s scale
         app_state.initial_track_width_scale = viewport->WorkSize.x / 30;

@@ -11,24 +11,6 @@ wavestudio_application.h
 /home/ben/Documents/projects/wavestudio/wavestudio_application.h
 
 /home/ben/Documents/projects/wavestudio/wavestudio_application.cpp
-imgui.h
-/home/ben/Documents/projects/wavestudio/imgui.h
-imgui_impl_sdl.h
-/home/ben/Documents/projects/wavestudio/imgui_impl_sdl.h
-imgui_impl_opengl3.h
-/home/ben/Documents/projects/wavestudio/imgui_impl_opengl3.h
-ImGuiFileBrowser.h
-/home/ben/Documents/projects/wavestudio/ImGuiFileBrowser.h
-iostream
--
-sstream
--
-vector
--
-SDL.h
--
-filesystem
--
 wavestudio_application.h
 /home/ben/Documents/projects/wavestudio/wavestudio_application.h
 GLES2/gl2.h
@@ -51,6 +33,24 @@ glbinding/gl/gl.h
 -
 
 /home/ben/Documents/projects/wavestudio/wavestudio_application.h
+iostream
+-
+sstream
+-
+vector
+-
+filesystem
+-
+imgui.h
+/home/ben/Documents/projects/wavestudio/imgui.h
+imgui_impl_sdl.h
+/home/ben/Documents/projects/wavestudio/imgui_impl_sdl.h
+imgui_impl_opengl3.h
+/home/ben/Documents/projects/wavestudio/imgui_impl_opengl3.h
+ImGuiFileBrowser.h
+/home/ben/Documents/projects/wavestudio/ImGuiFileBrowser.h
+SDL.h
+-
 
 /home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h
 imgui.h
