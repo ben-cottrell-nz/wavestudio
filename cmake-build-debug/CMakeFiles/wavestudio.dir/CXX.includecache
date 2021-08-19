@@ -13,6 +13,8 @@ imgui_impl_sdl.h
 /home/ben/Documents/projects/wavestudio/imgui_impl_sdl.h
 imgui_impl_opengl3.h
 /home/ben/Documents/projects/wavestudio/imgui_impl_opengl3.h
+ImGuiFileBrowser.h
+/home/ben/Documents/projects/wavestudio/ImGuiFileBrowser.h
 iostream
 -
 sstream
@@ -20,6 +22,8 @@ sstream
 vector
 -
 SDL.h
+-
+filesystem
 -
 GLES2/gl2.h
 -
@@ -38,6 +42,14 @@ glbinding/gl/gl.h
 glbinding/glbinding.h
 -
 glbinding/gl/gl.h
+-
+
+/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h
+imgui.h
+-
+string
+-
+vector
 -
 
 /home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.h

@@ -5,6 +5,14 @@ CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/examples/libs/gl3w/GL/g
  /home/ben/Documents/repos/imgui/examples/libs/gl3w/GL/gl3w.c
  /home/ben/Documents/repos/imgui/examples/libs/gl3w/GL/gl3w.h
  /home/ben/Documents/repos/imgui/examples/libs/gl3w/GL/glcorearb.h
+CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o
+ /home/ben/Documents/repos/ImGui-Addons/FileBrowser/Dirent/dirent.h
+ /home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp
+ /home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h
+ /home/ben/Documents/repos/imgui/imconfig.h
+ /home/ben/Documents/repos/imgui/imgui.h
+ /home/ben/Documents/repos/imgui/imgui_internal.h
+ /home/ben/Documents/repos/imgui/imstb_textedit.h
 CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp.o
  /home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp
  /home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.h
@@ -97,6 +105,7 @@ CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_widgets.cpp.o
  /home/ben/Documents/repos/imgui/imstb_textedit.h
 CMakeFiles/wavestudio.dir/main.cpp.o
  /home/ben/Documents/projects/wavestudio/main.cpp
+ /home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h
  /home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.h
  /home/ben/Documents/repos/imgui/backends/imgui_impl_sdl.h
  /home/ben/Documents/repos/imgui/examples/libs/gl3w/GL/gl3w.h

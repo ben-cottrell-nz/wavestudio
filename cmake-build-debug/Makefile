@@ -129,6 +129,30 @@ wavestudio/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/build
 .PHONY : wavestudio/fast
 
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.o: home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.o
+
+# target to build an object file
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o
+
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.i: home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.i
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.i
+
+# target to preprocess a source file
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.i
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.i
+
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.s: home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.s
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.s
+
+# target to generate assembly for a file
+home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.s
+.PHONY : home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.s
+
 home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.o: home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp.o
 .PHONY : home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.o
 
@@ -354,6 +378,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... wavestudio"
+	@echo "... home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.o"
+	@echo "... home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.i"
+	@echo "... home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.s"
 	@echo "... home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.o"
 	@echo "... home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.i"
 	@echo "... home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.s"

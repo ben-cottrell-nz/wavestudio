@@ -50,6 +50,7 @@
 					<Add directory="/home/ben/Documents/repos/imgui/examples/libs/gl3w"/>
 					<Add directory="/home/ben/Documents/repos/imgui"/>
 					<Add directory="/home/ben/Documents/repos/imgui/backends"/>
+					<Add directory="/home/ben/Documents/repos/ImGui-Addons/FileBrowser"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -79,6 +80,7 @@
 					<Add directory="/home/ben/Documents/repos/imgui/examples/libs/gl3w"/>
 					<Add directory="/home/ben/Documents/repos/imgui"/>
 					<Add directory="/home/ben/Documents/repos/imgui/backends"/>
+					<Add directory="/home/ben/Documents/repos/ImGui-Addons/FileBrowser"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -97,6 +99,12 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/ben/Documents/projects/wavestudio/main.cpp">
+			<Option target="wavestudio"/>
+		</Unit>
+		<Unit filename="/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp">
+			<Option target="wavestudio"/>
+		</Unit>
+		<Unit filename="/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h">
 			<Option target="wavestudio"/>
 		</Unit>
 		<Unit filename="/home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp">

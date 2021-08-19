@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = -DIMGUI_IMPL_OPENGL_LOADER_GL3W -D_REENTRANT
 
-C_INCLUDES = -I/usr/include/SDL2 -I/home/ben/Documents/repos/imgui/examples/libs/gl3w -I/home/ben/Documents/repos/imgui -I/home/ben/Documents/repos/imgui/backends
+C_INCLUDES = -I/usr/include/SDL2 -I/home/ben/Documents/repos/imgui/examples/libs/gl3w -I/home/ben/Documents/repos/imgui -I/home/ben/Documents/repos/imgui/backends -I/home/ben/Documents/repos/ImGui-Addons/FileBrowser
 
 C_FLAGS = -g
 
 CXX_DEFINES = -DIMGUI_IMPL_OPENGL_LOADER_GL3W -D_REENTRANT
 
-CXX_INCLUDES = -I/usr/include/SDL2 -I/home/ben/Documents/repos/imgui/examples/libs/gl3w -I/home/ben/Documents/repos/imgui -I/home/ben/Documents/repos/imgui/backends
+CXX_INCLUDES = -I/usr/include/SDL2 -I/home/ben/Documents/repos/imgui/examples/libs/gl3w -I/home/ben/Documents/repos/imgui -I/home/ben/Documents/repos/imgui/backends -I/home/ben/Documents/repos/ImGui-Addons/FileBrowser
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS = -g -std=gnu++17
 

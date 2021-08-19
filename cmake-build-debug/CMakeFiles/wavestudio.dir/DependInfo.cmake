@@ -25,8 +25,10 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/ben/Documents/repos/imgui/examples/libs/gl3w"
   "/home/ben/Documents/repos/imgui"
   "/home/ben/Documents/repos/imgui/backends"
+  "/home/ben/Documents/repos/ImGui-Addons/FileBrowser"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o"
   "/home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.cpp.o"
   "/home/ben/Documents/repos/imgui/backends/imgui_impl_sdl.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/backends/imgui_impl_sdl.cpp.o"
   "/home/ben/Documents/repos/imgui/imgui.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui.cpp.o"
@@ -50,6 +52,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/ben/Documents/repos/imgui/examples/libs/gl3w"
   "/home/ben/Documents/repos/imgui"
   "/home/ben/Documents/repos/imgui/backends"
+  "/home/ben/Documents/repos/ImGui-Addons/FileBrowser"
   )
 
 # The set of dependency files which are needed:

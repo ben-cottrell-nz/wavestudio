@@ -7,10 +7,12 @@
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
+#include "ImGuiFileBrowser.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
 #include <SDL.h>
+#include <filesystem>
 
 #if defined(IMGUI_IMPL_OPENGL_ES2)
 #include <GLES2/gl2.h>
@@ -55,6 +57,7 @@ struct Track {
     std::string name;
     float gain = 0.5;
     float pan = 0;
+    std::vector<double> samples;
 };
 
 struct Project {
@@ -64,7 +67,11 @@ struct Project {
 
 struct AppState {
     bool intro_window_visible = true;
+    bool quit = false;
+    bool opening_sound_file = false;
+    bool open_file_dialog_visible = false;
     Project project;
+    imgui_addons::ImGuiFileBrowser file_dialog;
     double initial_track_width_scale;
 } g_app_state;
 
@@ -85,13 +92,12 @@ void SetFont() {
 
 }
 
-void SetColors()
-{
+void SetColors() {
     //https://github.com/ocornut/imgui/issues/707#issuecomment-512669512
     ImGui::GetStyle().FrameRounding = 4.0f;
     ImGui::GetStyle().GrabRounding = 4.0f;
 
-    ImVec4* colors = ImGui::GetStyle().Colors;
+    ImVec4 *colors = ImGui::GetStyle().Colors;
     colors[ImGuiCol_Text] = ImVec4(0.95f, 0.96f, 0.98f, 1.00f);
     colors[ImGuiCol_TextDisabled] = ImVec4(0.36f, 0.42f, 0.47f, 1.00f);
     colors[ImGuiCol_WindowBg] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
@@ -142,7 +148,7 @@ void SetColors()
     colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 }
 
-void ShowTrackContent(const Track& track) {
+void ShowTrackContent(const Track &track) {
     //ImGui::Text("%s", track.name.c_str());
     static float val = 1.f;
     const ImGuiViewport *viewport = ImGui::GetMainViewport();
@@ -153,8 +159,7 @@ void ShowTrackContent(const Track& track) {
                      ImVec2(viewport->WorkSize.x - 256, 80));
 }
 
-void DrawTracks()
-{
+void DrawTracks() {
     for (auto &track : g_app_state.project.tracks) {
         ImGui::BeginGroup();
         ImGui::Text("%s", track.name.c_str());
@@ -179,21 +184,56 @@ void DrawTracks()
     }
 }
 
+
+void TryOpenSoundFileAsTrack(const std::string &path) {
+    //ImGui::CloseCurrentPopup();
+    //fileBrowser.closeDialog();
+    //g_app_state.opening_sound_file = false;
+}
+
+void ShowOpenFileDialog(std::string &path, const char *filters, const char *dir) {
+    if (!g_app_state.open_file_dialog_visible) {
+        ImGui::OpenPopup("Open File");
+        g_app_state.open_file_dialog_visible = true;
+    }
+    imgui_addons::ImGuiFileBrowser& file_dialog = g_app_state.file_dialog;
+    if(file_dialog.showFileDialog("Open File", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310), filters))
+    {
+        std::cout << file_dialog.selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
+        std::cout << file_dialog.selected_path << std::endl;    // The absolute path to the selected file
+        g_app_state.open_file_dialog_visible = false;
+        g_app_state.opening_sound_file = false;
+    }
+}
+
 void ShowMainWindow() {
     ImGui::Begin("Project", nullptr,
                  ImGuiWindowFlags_NoResize |
                  ImGuiWindowFlags_NoCollapse |
                  ImGuiWindowFlags_MenuBar);
     //        ShowAppMainMenuBar();
-    if (ImGui::BeginMenuBar())
-    {
+    if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("File")) {
             if (ImGui::MenuItem("New Project")) {}
             if (ImGui::MenuItem("Open Project")) {}
+            ImGui::Separator();
+            if (ImGui::MenuItem("Open Sound File")) {
+                g_app_state.open_file_dialog_visible = false;
+                g_app_state.opening_sound_file = true;
+            }
+            ImGui::MenuItem("Import Sound File");
+            ImGui::Separator();
+            if (ImGui::MenuItem("Quit")) {
+                g_app_state.quit = true;
+            }
             ImGui::EndMenu();
         }
     }
     ImGui::EndMenuBar();
+    if (g_app_state.opening_sound_file) {
+        std::string soundFilePath;
+        ShowOpenFileDialog(soundFilePath, ".wav", ".");
+    }
     DrawTracks();
     ImGui::End();
 }
@@ -206,13 +246,14 @@ void NewProject() {
 
 }
 
+
 void ShowStartupWindow() {
     ImGui::Begin("Intro Screen", &g_app_state.intro_window_visible,
                  ImGuiWindowFlags_NoResize);
     if (ImGui::Button("New Project")) {
         std::cout << __PRETTY_FUNCTION__ << ':' << __LINE__ << '\n';
         NewProject();
-        ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGuiViewport *viewport = ImGui::GetMainViewport();
         //default is 30s scale
         g_app_state.initial_track_width_scale = viewport->WorkSize.x / 30;
         g_app_state.intro_window_visible = false;
@@ -320,8 +361,7 @@ int main(int, char **) {
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     // Main loop
-    bool done = false;
-    while (!done) {
+    while (!g_app_state.quit) {
         // Poll and handle events (inputs, window resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -331,10 +371,10 @@ int main(int, char **) {
         while (SDL_PollEvent(&event)) {
             ImGui_ImplSDL2_ProcessEvent(&event);
             if (event.type == SDL_QUIT)
-                done = true;
+                g_app_state.quit = true;
             if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
                 event.window.windowID == SDL_GetWindowID(window))
-                done = true;
+                g_app_state.quit = true;
         }
 
         // Start the Dear ImGui frame
