@@ -26,6 +26,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/ben/Documents/repos/imgui"
   "/home/ben/Documents/repos/imgui/backends"
   "/home/ben/Documents/repos/ImGui-Addons/FileBrowser"
+  "/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.cpp.o"
@@ -37,6 +38,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ben/Documents/repos/imgui/imgui_tables.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_tables.cpp.o"
   "/home/ben/Documents/repos/imgui/imgui_widgets.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_widgets.cpp.o"
   "/home/ben/Documents/projects/wavestudio/main.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/main.cpp.o"
+  "/home/ben/Documents/projects/wavestudio/wavestudio_application.cpp" "/home/ben/Documents/projects/wavestudio/cmake-build-debug/CMakeFiles/wavestudio.dir/wavestudio_application.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -53,6 +55,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/ben/Documents/repos/imgui"
   "/home/ben/Documents/repos/imgui/backends"
   "/home/ben/Documents/repos/ImGui-Addons/FileBrowser"
+  "/include"
   )
 
 # The set of dependency files which are needed:

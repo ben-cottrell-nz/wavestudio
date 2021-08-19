@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_tables.cpp.o"
   "CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_widgets.cpp.o"
   "CMakeFiles/wavestudio.dir/main.cpp.o"
+  "CMakeFiles/wavestudio.dir/wavestudio_application.cpp.o"
   "wavestudio"
   "wavestudio.pdb"
 )

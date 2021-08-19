@@ -105,6 +105,10 @@ CMakeFiles/wavestudio.dir/home/ben/Documents/repos/imgui/imgui_widgets.cpp.o
  /home/ben/Documents/repos/imgui/imstb_textedit.h
 CMakeFiles/wavestudio.dir/main.cpp.o
  /home/ben/Documents/projects/wavestudio/main.cpp
+ /home/ben/Documents/projects/wavestudio/wavestudio_application.h
+CMakeFiles/wavestudio.dir/wavestudio_application.cpp.o
+ /home/ben/Documents/projects/wavestudio/wavestudio_application.cpp
+ /home/ben/Documents/projects/wavestudio/wavestudio_application.h
  /home/ben/Documents/repos/ImGui-Addons/FileBrowser/ImGuiFileBrowser.h
  /home/ben/Documents/repos/imgui/backends/imgui_impl_opengl3.h
  /home/ben/Documents/repos/imgui/backends/imgui_impl_sdl.h

@@ -369,6 +369,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+wavestudio_application.o: wavestudio_application.cpp.o
+.PHONY : wavestudio_application.o
+
+# target to build an object file
+wavestudio_application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/wavestudio_application.cpp.o
+.PHONY : wavestudio_application.cpp.o
+
+wavestudio_application.i: wavestudio_application.cpp.i
+.PHONY : wavestudio_application.i
+
+# target to preprocess a source file
+wavestudio_application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/wavestudio_application.cpp.i
+.PHONY : wavestudio_application.cpp.i
+
+wavestudio_application.s: wavestudio_application.cpp.s
+.PHONY : wavestudio_application.s
+
+# target to generate assembly for a file
+wavestudio_application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wavestudio.dir/build.make CMakeFiles/wavestudio.dir/wavestudio_application.cpp.s
+.PHONY : wavestudio_application.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -408,6 +432,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... wavestudio_application.o"
+	@echo "... wavestudio_application.i"
+	@echo "... wavestudio_application.s"
 .PHONY : help
 
 
