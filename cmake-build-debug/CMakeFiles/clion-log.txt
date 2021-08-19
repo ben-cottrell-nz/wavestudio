@@ -1,4 +1,0 @@
-/home/ben/Downloads/CLion-2021.1.3/clion-2021.1.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/ben/Documents/projects/wavestudio
--- Configuring done
--- Generating done
--- Build files have been written to: /home/ben/Documents/projects/wavestudio/cmake-build-debug
